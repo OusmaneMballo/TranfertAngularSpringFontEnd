@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+  
 }
 
 .sidenav {
@@ -7,7 +8,7 @@
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+  background:#ff5c8d;
 }
 
 .mat-toolbar.mat-primary {
@@ -15,3 +16,4 @@
   top: 0;
   z-index: 1;
 }
+

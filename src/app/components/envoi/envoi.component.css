@@ -1,0 +1,44 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 5%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+  .btn{
+      background-color:rgb(46, 44, 44);
+      color: #c90d4f;
+      font-weight: bold;
+      width: 65%;
+      margin-left: 70%;
+      margin-top: 5%;
+  }
+  .btn:hover{
+    background-color:#a00037;
+    color: #ffff;
+  }
+  .flex-container{
+    display: flex;
+  }
+  .flex-container > div{
+    margin: 2%;
+    width: 45;
+    
+  }
+  fieldset{
+    border: #a00037 solid 1px;
+    border-radius: 5px;
+    margin: 2%;
+  }
+  legend{
+      font-size: large;
+      font-family: roboto;
+  }
+  
