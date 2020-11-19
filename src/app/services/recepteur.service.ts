@@ -14,7 +14,7 @@ export class RecepteurService {
 
     /** GET All Recepteur from the server */
 getRecepteurs(): Observable<Recepteur[]> {
-  return this.httpClient.get<Recepteur[]>(this.recepteurUrl+'/recepteur/all').pipe(
+  return this.httpClient.get<Recepteur[]>(this.recepteurUrl+'/all').pipe(
     map(Response=>Response)
   );
 }
