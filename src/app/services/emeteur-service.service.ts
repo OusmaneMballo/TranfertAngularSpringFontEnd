@@ -30,6 +30,7 @@ findById(id: number): Observable<Emeteur>{
   return this.httpClient.get<Emeteur>(url).pipe(Response=>Response);
 }
 
+/** Delete Emeteur by id into the server */
 delete(id: number) {
   let url = `${this.emeteurUrl+'/delete'}/${id}`;
   this.httpClient.get<Emeteur>(url).pipe(Response=>Response);
