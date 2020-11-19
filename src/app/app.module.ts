@@ -15,12 +15,14 @@ import { MatListModule } from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { EnvoiComponent } from './components/envoi/envoi.component';
+import { OperationsComponent } from './components/operations/operations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    EnvoiComponent
+    EnvoiComponent,
+    OperationsComponent
   ],
   imports: [
     BrowserModule,
