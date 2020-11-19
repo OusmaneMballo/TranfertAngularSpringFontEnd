@@ -14,8 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator'
 import { EnvoiComponent } from './components/envoi/envoi.component';
 import { OperationsComponent } from './components/operations/operations.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -32,11 +35,13 @@ import { OperationsComponent } from './components/operations/operations.componen
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
+    MatPaginatorModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
