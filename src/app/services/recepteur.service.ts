@@ -19,11 +19,20 @@ getRecepteurs(): Observable<Recepteur[]> {
   );
 }
 
-/** Add Emeteur into the server */
-addEmeteur(repteur: Recepteur): Observable<Recepteur> {
+/** Add Recepteur into the server */
+addRecepteur(repteur: Recepteur): Observable<Recepteur> {
   return this.httpClient.post<Recepteur>(this.recepteurUrl+'/add', repteur);
 }
-
+ajoutEmeteur(repteur: Recepteur){
+  return this.httpClient.post(this.recepteurUrl+'/add', repteur).subscribe(
+    ()=>{
+      console.log("Recepteur ajoute avec succes!");
+    },
+    (error)=>{
+      console.log("Recepteur non ajoute "+error);
+    }
+  );
+}
 /** GET Recepteur by id from the server */
 findById(id: number): Observable<Recepteur>{
   let url = `${this.recepteurUrl}/${id}`;

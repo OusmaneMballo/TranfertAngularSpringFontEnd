@@ -1,19 +1,20 @@
 <fieldset>
     <legend>Envoi</legend>
-    <form class="example-form">
+    <form class="example-form" (ngSubmit)="addOperation()">
         <div class="flex-container">
             <div>
                 <fieldset>
                     <legend>Emeteur</legend>
+                    <h2>{{emeteur.prenom | uppercase}} {{emeteur.nom | uppercase}}</h2>
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>First name emeteur</mat-label>
-                        <input matInput>
+                        <input [(ngModel)]="emeteur.prenom" name="prenom" matInput>
                     </mat-form-field></td>
                     <td>
                         <mat-form-field class="example-full-width">
                         <mat-label>Last Name emeteur</mat-label>
-                        <input matInput>
+                        <input [(ngModel)]="emeteur.nom" name="nom" matInput>
                         </mat-form-field>
                     </td>
                     </tr></table>
@@ -23,15 +24,15 @@
                             <td>
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Telephone</mat-label>
-                                    <span matPrefix>+1 &nbsp;</span>
-                                    <input type="tel" matInput placeholder="555-555-1234">
+                                    <span matPrefix>+221 &nbsp;</span>
+                                    <input [(ngModel)]="emeteur.telephone" name="telephone" type="tel" matInput placeholder="555-555-1234">
                                     <mat-icon matSuffix>mode_edit</mat-icon>
                                 </mat-form-field>
                             </td>
                             <td>
                                 <mat-form-field class="example-full-width">
                                 <mat-label>Num Carte Identite</mat-label>
-                                <input matInput>
+                                <input [(ngModel)]="emeteur.nci" name="nci" matInput>
                                 </mat-form-field>
                             </td>
                         </tr>
@@ -61,11 +62,11 @@
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>First name Recepteur</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="recepteur.prenom" name="prenom">
                     </mat-form-field></td>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>Last Name Recepteur</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="recepteur.nom" name="nom">
                     </mat-form-field></td>
                     </tr></table>
             
@@ -73,7 +74,7 @@
                     <mat-form-field class="example-full-width">
                         <mat-label>Telephone</mat-label>
                         <span matPrefix>+221 &nbsp;</span>
-                        <input type="tel" matInput placeholder="555-555-1234">
+                        <input type="tel" matInput [(ngModel)]="recepteur.tel" name="tel" placeholder="555-555-1234">
                         <mat-icon matSuffix>mode_edit</mat-icon>
                     </mat-form-field>
                     </p>
