@@ -1,9 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChild, Input } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-import {EmeteurServiceService} from '../../services/emeteur-service.service';
 import {Emeteur} from '../../modeles/emeteur';
+import {Envoie} from '../../modeles/envoie';
+import {EmeteurServiceService} from '../../services/emeteur-service.service';
 import { RecepteurService } from 'src/app/services/recepteur.service';
+import {EnvoieService} from '../../services/envoie.service';
 
 @Component({
   selector: 'app-operations',
@@ -14,18 +16,18 @@ export class OperationsComponent implements OnInit {
   
   emetteur=new Emeteur();
   
-  listEmeteurs: Emeteur[]=[{'id': 1, 'nom': "Mballo", 'prenom': "Ousmane", 'telephone': "771979043", 'nci': "275128797", 'envoie': null}];
-  dataSource: MatTableDataSource<Emeteur>;
-  constructor(private emeteurService: EmeteurServiceService, private recepteur: RecepteurService) { }
+  listOperation: Envoie[]=[];
+  dataSource: MatTableDataSource<Envoie>;
+  constructor(private envoieService: EnvoieService, private recepteur: RecepteurService) { }
+  
   ngOnInit(): void {
-   // this.emeteurService.getEmeteurs();
-    this.emeteurService.getEmeteurs().subscribe(data => this.listEmeteurs = data);
-    this.dataSource=new MatTableDataSource<Emeteur>(this.listEmeteurs);
-    
+    this.envoieService.getEnvoies().subscribe((data)=>{
+      this.listOperation=data;
+      this.dataSource=new MatTableDataSource<Envoie>(this.listOperation);
+    });
   }
 
-  displayedColumns: string[] = ['id', 'prenom', 'nom', 'telephone', 'nci'];
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['emetteur', 'recepteur', 'montant', 'date'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
