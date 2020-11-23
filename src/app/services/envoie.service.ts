@@ -14,7 +14,7 @@ export class EnvoieService {
   constructor(private httpClient: HttpClient) { }
 
       /** GET All Envoie from the server */
-getRecepteurs(): Observable<Envoie[]> {
+getEnvoies(): Observable<Envoie[]> {
   return this.httpClient.get<Envoie[]>(this.envoieUrl+'/all').pipe(
     map(Response=>Response)
   );
@@ -23,6 +23,22 @@ getRecepteurs(): Observable<Envoie[]> {
 /** Add Emeteur into the server */
 addEmeteur(envoie: Envoie): Observable<Envoie> {
   return this.httpClient.post<Envoie>(this.envoieUrl+'/add', envoie);
+}
+
+/** Add Envoie into the server */
+addEnvoie(envoie: Envoie): Observable<Envoie> {
+  return this.httpClient.post<Envoie>(this.envoieUrl+'/add', envoie);
+}
+
+addOperation(envoie: Envoie){
+  return this.httpClient.post(this.envoieUrl+'/add',envoie).subscribe(
+    ()=>{
+      console.log("Operation ajoute avec succes!");
+    },
+    (error)=>{
+      console.log("Emetteur non ajoute "+error);
+    }
+  );
 }
 
 

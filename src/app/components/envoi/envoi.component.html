@@ -41,12 +41,12 @@
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>Montant</mat-label>
-                        <input matInput placeholder="CFA">
+                        <input matInput [(ngModel)]="envoie.montant" name="montant" placeholder="CFA">
                     </mat-form-field></td>
                     <td>
                             <mat-form-field class="example-full-width">
                                 <mat-label>Choose a date</mat-label>
-                                <input matInput>
+                                <input matInput [(ngModel)]="envoie.date" name="date">
                                 <mat-datepicker-toggle></mat-datepicker-toggle>
                                 <!-- <mat-datepicker #picker></mat-datepicker> -->
                         </mat-form-field>

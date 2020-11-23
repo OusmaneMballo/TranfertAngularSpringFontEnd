@@ -16,7 +16,8 @@ import {EnvoieService} from '../../services/envoie.service';
 export class EnvoiComponent implements OnInit {
   emeteur=new Emeteur();
   recepteur=new Recepteur();
-  envoie:Envoie[];
+  envoie=new Envoie();
+  listEnvoie:Envoie[];
 
   constructor(
               private Envoieservice: EnvoieService,
@@ -25,7 +26,7 @@ export class EnvoiComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
-    this.Envoieservice.getRecepteurs().subscribe(data=>this.envoie=data);
+    this.Envoieservice.getEnvoies().subscribe(data=>this.listEnvoie=data);
     this.emeteur.nci='';
     this.emeteur.nom='';
     this.emeteur.prenom='';
@@ -34,18 +35,33 @@ export class EnvoiComponent implements OnInit {
     this.recepteur.prenom='';
     this.recepteur.nom='';
     this.recepteur.tel='';
+    this.envoie.date='';
+    this.envoie.montant=0;
   }
 
-  saveEmeteur(){
-    console.log(this.EmeteurService.ajoutEmeteur(this.emeteur));
-  }
+  // saveEmeteur(){
+  //   console.log(this.EmeteurService.ajoutEmeteur(this.emeteur));
+  // }
 
-  saveRecepteur(){
-    console.log(this.RecepteurService.ajoutEmeteur(this.recepteur));
-  }
+  // saveRecepteur(){
+  //   console.log(this.RecepteurService.ajoutEmeteur(this.recepteur));
+  // }
+  
+  /*Cette methode permet d'effectuer une operation en affectant l'objet
+    emetteur et l'objet recepteur a l'objet envoie */
   addOperation(){
-    this.saveEmeteur();
-    this.saveRecepteur();
+    // this.saveEmeteur();
+    // this.saveRecepteur();
+    this.envoie.emeteur=this.emeteur;
+    this.envoie.recepteur=this.recepteur;
+    this.Envoieservice.addEnvoie(this.envoie).subscribe((data)=>{
+      //console.log(data);
+    },
+    (error)=>{
+      console.log(error);
+    });
+    //console.log(this.Envoieservice.addOperation(this.envoie));
+
   }
 
 }
