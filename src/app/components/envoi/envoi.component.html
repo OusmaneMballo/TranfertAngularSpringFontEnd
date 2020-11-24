@@ -1,6 +1,6 @@
 <fieldset>
     <legend>Envoi</legend>
-    <form class="example-form" (ngSubmit)="addOperation()">
+    <form class="example-form" #monForm=ngForm (ngSubmit)="addOperation()">
         <div class="flex-container">
             <div>
                 <fieldset>
@@ -9,48 +9,46 @@
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>First name emeteur</mat-label>
-                        <input [(ngModel)]="emeteur.prenom" name="prenom" matInput>
-                    </mat-form-field></td>
+                        <input [(ngModel)]="emeteur.prenom" name="prenom" matInput required #prenom> 
+                    </mat-form-field>
+                    </td>
                     <td>
                         <mat-form-field class="example-full-width">
                         <mat-label>Last Name emeteur</mat-label>
-                        <input [(ngModel)]="emeteur.nom" name="nom" matInput>
+                        <input [(ngModel)]="emeteur.nom" name="nom" matInput required #nom>
                         </mat-form-field>
                     </td>
                     </tr></table>
-            
                     <table class="example-full-width" cellspacing="0">
                         <tr>
                             <td>
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Telephone</mat-label>
                                     <span matPrefix>+221 &nbsp;</span>
-                                    <input [(ngModel)]="emeteur.telephone" name="telephone" type="tel" matInput placeholder="555-555-1234">
+                                    <input [(ngModel)]="emeteur.telephone" name="telephone" type="tel" matInput placeholder="555-555-1234" #telephone maxlength="14" required>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
                                 </mat-form-field>
                             </td>
                             <td>
                                 <mat-form-field class="example-full-width">
                                 <mat-label>Num Carte Identite</mat-label>
-                                <input [(ngModel)]="emeteur.nci" name="nci" matInput>
+                                <input [(ngModel)]="emeteur.nci" name="nci" matInput  maxlength="13" #nci required>
                                 </mat-form-field>
                             </td>
                         </tr>
                     </table>
-            
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>Montant</mat-label>
-                        <input matInput [(ngModel)]="envoie.montant" name="montant" placeholder="CFA">
+                        <input matInput [(ngModel)]="envoie.montant" name="montant" placeholder="CFA" #montant required>
                     </mat-form-field></td>
                     <td>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Choose a date</mat-label>
-                                <input matInput [(ngModel)]="envoie.date" name="date">
-                                <mat-datepicker-toggle></mat-datepicker-toggle>
-                                <!-- <mat-datepicker #picker></mat-datepicker> -->
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [(ngModel)]="envoie.date" name="date"  maxlength="10" #date required>
+                            <mat-datepicker-toggle></mat-datepicker-toggle>
+                            <!-- <mat-datepicker #picker></mat-datepicker> -->
                         </mat-form-field>
-                        
                         </td>
                     </tr>
                     </table>
@@ -59,22 +57,22 @@
             <div>
                 <fieldset>
                     <legend>Recepteur</legend>
+                    <h2>{{recepteur.prenom | uppercase}} {{recepteur.nom | uppercase}}</h2>
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>First name Recepteur</mat-label>
-                        <input matInput [(ngModel)]="recepteur.prenom" name="prenom">
+                        <input matInput [(ngModel)]="recepteur.prenom" name="prenom" #prenomR required>
                     </mat-form-field></td>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>Last Name Recepteur</mat-label>
-                        <input matInput [(ngModel)]="recepteur.nom" name="nom">
+                        <input matInput [(ngModel)]="recepteur.nom" name="nomR" #nomR required>
                     </mat-form-field></td>
                     </tr></table>
-            
                     <p>
                     <mat-form-field class="example-full-width">
                         <mat-label>Telephone</mat-label>
                         <span matPrefix>+221 &nbsp;</span>
-                        <input type="tel" matInput [(ngModel)]="recepteur.tel" name="tel" placeholder="555-555-1234">
+                        <input type="tel" matInput [(ngModel)]="recepteur.tel" name="tel" class="txt" placeholder="555-555-1234"  maxlength="14" required #tel>
                         <mat-icon matSuffix>mode_edit</mat-icon>
                     </mat-form-field>
                     </p>
@@ -84,6 +82,6 @@
                 </fieldset>
             </div>
         </div>
-        <button mat-raised-button class="btn">Effectuer Envoi</button>
+        <button mat-raised-button class="btn" [disabled]=!monForm.valid>Effectuer Envoi</button>
     </form>
 </fieldset>

@@ -20,7 +20,6 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator'
 import { EnvoiComponent } from './components/envoi/envoi.component';
 import { OperationsComponent } from './components/operations/operations.component';
-import { from } from 'rxjs';
 
 @NgModule({
   declarations: [

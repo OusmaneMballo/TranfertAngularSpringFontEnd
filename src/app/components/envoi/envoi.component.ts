@@ -1,11 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {Emeteur} from '../../modeles/emeteur';
 import {Recepteur} from '../../modeles/recepteur';
 import {Envoie} from '../../modeles/envoie';
-
-import {EmeteurServiceService} from '../../services/emeteur-service.service';
-import {RecepteurService} from '../../services/recepteur.service';
 import {EnvoieService} from '../../services/envoie.service';
 
 @Component({
@@ -18,12 +15,9 @@ export class EnvoiComponent implements OnInit {
   recepteur=new Recepteur();
   envoie=new Envoie();
   listEnvoie:Envoie[];
+  @ViewChild('monForm') form: any;
 
-  constructor(
-              private Envoieservice: EnvoieService,
-              private EmeteurService: EmeteurServiceService,
-              private RecepteurService: RecepteurService
-              ) { }
+  constructor(private Envoieservice: EnvoieService) { }
 
   ngOnInit(): void {
     this.Envoieservice.getEnvoies().subscribe(data=>this.listEnvoie=data);
@@ -56,6 +50,8 @@ export class EnvoiComponent implements OnInit {
     this.envoie.recepteur=this.recepteur;
     this.Envoieservice.addEnvoie(this.envoie).subscribe((data)=>{
       //console.log(data);
+      this.form.reset();
+      
     },
     (error)=>{
       console.log(error);
