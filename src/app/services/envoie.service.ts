@@ -27,7 +27,9 @@ addEmeteur(envoie: Envoie): Observable<Envoie> {
 
 /** Add Envoie into the server */
 addEnvoie(envoie: Envoie): Observable<Envoie> {
-  return this.httpClient.post<Envoie>(this.envoieUrl+'/add', envoie);
+  return this.httpClient.post<Envoie>(this.envoieUrl+'/add', envoie).pipe(
+    map(Response=>Response)
+  );
 }
 
 addOperation(envoie: Envoie){
@@ -38,6 +40,14 @@ addOperation(envoie: Envoie){
     (error)=>{
       console.log("Emetteur non ajoute "+error);
     }
+  );
+}
+
+getEnvoieById(id: number):Observable<Envoie>{
+  let url = `${this.envoieUrl}/${id}`;
+  //console.log(url);
+  return this.httpClient.get<Envoie>(url).pipe(
+    map(Response=>Response)
   );
 }
 

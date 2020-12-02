@@ -3,7 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {Emeteur} from '../../modeles/emeteur';
 import {Envoie} from '../../modeles/envoie';
-import {EmeteurServiceService} from '../../services/emeteur-service.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+//import {EmeteurServiceService} from '../../services/emeteur-service.service';
 import { RecepteurService } from 'src/app/services/recepteur.service';
 import {EnvoieService} from '../../services/envoie.service';
 
@@ -18,7 +19,10 @@ export class OperationsComponent implements OnInit {
   
   listOperation: Envoie[]=[];
   dataSource: MatTableDataSource<Envoie>;
-  constructor(private envoieService: EnvoieService, private recepteur: RecepteurService) { }
+  constructor(
+    private envoieService: EnvoieService,
+    private route: ActivatedRoute,
+    private recepteur: RecepteurService) { }
   
   ngOnInit(): void {
     this.envoieService.getEnvoies().subscribe((data)=>{
@@ -27,11 +31,19 @@ export class OperationsComponent implements OnInit {
     });
   }
 
-  displayedColumns: string[] = ['emetteur', 'recepteur', 'montant', 'date'];
+  displayedColumns: string[] = ['emetteur', 'recepteur', 'montant', 'date', 'detail'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  edit(id){
+    this.envoieService.getEnvoieById(id).subscribe(
+      (data)=>{
+        console.log(data);
+      }
+   );
   }
  
 }
