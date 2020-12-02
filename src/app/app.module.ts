@@ -20,13 +20,15 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator'
 import { EnvoiComponent } from './components/envoi/envoi.component';
 import { OperationsComponent } from './components/operations/operations.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     EnvoiComponent,
-    OperationsComponent
+    OperationsComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
