@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Emeteur} from '../../modeles/emeteur';
 import {Recepteur} from '../../modeles/recepteur';
 import {Envoie} from '../../modeles/envoie';
@@ -18,10 +16,7 @@ export class EnvoiComponent implements OnInit {
   listEnvoie:Envoie[];
   @ViewChild('monForm') form: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private Envoieservice: EnvoieService
-    ) { }
+  constructor(private Envoieservice: EnvoieService) { }
 
   ngOnInit(): void {
     this.Envoieservice.getEnvoies().subscribe(data=>this.listEnvoie=data);

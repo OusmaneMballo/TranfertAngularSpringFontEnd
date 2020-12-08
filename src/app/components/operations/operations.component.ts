@@ -3,7 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {Emeteur} from '../../modeles/emeteur';
 import {Envoie} from '../../modeles/envoie';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras, ParamMap } from '@angular/router';
 //import {EmeteurServiceService} from '../../services/emeteur-service.service';
 import { RecepteurService } from 'src/app/services/recepteur.service';
 import {EnvoieService} from '../../services/envoie.service';
@@ -16,6 +16,7 @@ import {EnvoieService} from '../../services/envoie.service';
 export class OperationsComponent implements OnInit {
   
   emetteur=new Emeteur();
+  router: Router;
   
   listOperation: Envoie[]=[];
   dataSource: MatTableDataSource<Envoie>;
@@ -41,7 +42,8 @@ export class OperationsComponent implements OnInit {
   edit(id){
     this.envoieService.getEnvoieById(id).subscribe(
       (data)=>{
-        console.log(data);
+        //console.log(data);
+        this.router.navigate(['detail'], { relativeTo: this.route });
       }
    );
   }
