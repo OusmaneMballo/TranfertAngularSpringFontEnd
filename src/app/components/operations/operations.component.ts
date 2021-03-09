@@ -56,5 +56,14 @@ export class OperationsComponent implements OnInit {
       }
    );
   }
+
+  delete(id){
+    this.envoieService.deleteEnvoi(id).subscribe(data=>{
+      
+    },
+    err=>{
+
+    })
+  }
  
 }

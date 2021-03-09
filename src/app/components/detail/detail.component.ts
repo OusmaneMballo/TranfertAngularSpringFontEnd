@@ -51,13 +51,11 @@ export class DetailComponent implements OnInit {
       let ok=this.envoieservice.updateEnvoie(this.envoie);
       if(ok){
         ok.subscribe(data=>{
-          console.log("Okey!");
           this.isEmeteurActivate=false;
           this.isRecepteurActivate=false;
           this.isValidate=false;
         },
         err=>{
-          console.log("Non okey!!");
         })
       }
   }
@@ -72,4 +70,6 @@ export class DetailComponent implements OnInit {
     this.isRecepteurActivate=true;
     this.isValidate=true;
   }
+
+  
 }

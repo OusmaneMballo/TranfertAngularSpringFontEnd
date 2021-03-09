@@ -45,30 +45,28 @@ addOperation(envoie: Envoie){
 }
 
 getEnvoieById(id: number):Observable<Envoie>{
+
   let url = `${this.envoieUrl}/${id}`;
-  //console.log(url);
   return this.httpClient.get<Envoie>(url).pipe(
     map(Response=>Response)
   );
-}
-/* Methode de mis a jour */
-updateEnvoie(envoie: Envoie): Observable<any>{
-  let envoie_update=null;
-  let url = `${this.envoieUrl+'/update'}/${envoie.id}`;
-  console.log(envoie);
-  return this.httpClient.put<Envoie>(url, envoie);
-  // return this.httpClient.put<Envoie>(this.envoieUrl+'/update', envoie).pipe(
-  //   map(envoie_update=Response=>Response)
-  //   //heroes=>this.heroes=heroes
-  // );
+
 }
 
-// updateHero(hero: Hero): Observable<any> {
-//   return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-//     tap(_ => this.log(`updated hero id=${hero.id}`)),
-//     catchError(this.handleError<any>('updateHero'))
-//   );
-// }
+
+/* Methode de mis a jour */
+updateEnvoie(envoie: Envoie): Observable<any>{
+  
+  let url = `${this.envoieUrl+'/update'}/${envoie.id}`;
+  return this.httpClient.put<Envoie>(url, envoie);
+}
+
+deleteEnvoi(id: number){
+
+  let url = `${this.envoieUrl+'/delete'}/${id}`;
+  return this.httpClient.delete(url);
+
+}
 
 
 }

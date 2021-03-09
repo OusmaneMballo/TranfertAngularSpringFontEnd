@@ -5,7 +5,7 @@
             <div>
                 <fieldset>
                     <legend>Emetteur</legend>
-                    <mat-icon class="editbtn" (click)="activationEmeteur()" matSuffix>mode_edit</mat-icon>
+                    <mat-icon class="editbtn"  style="cursor: pointer;" (click)="activationEmeteur()" matSuffix>mode_edit</mat-icon>
                     <h2>{{envoie.emeteur.prenom | uppercase}} {{envoie.emeteur.nom | uppercase}}</h2> 
                     <table class="example-full-width" cellspacing="0"><tr>
                         <td><mat-form-field class="example-full-width">
@@ -57,7 +57,7 @@
             <div>
                 <fieldset>
                     <legend>Recepteur</legend>
-                    <mat-icon matSuffix class="editbtn" (click)="activationRecepteur()">mode_edit</mat-icon>
+                    <mat-icon matSuffix class="editbtn"  style="cursor: pointer;" (click)="activationRecepteur()">mode_edit</mat-icon>
                     <h2>{{envoie.recepteur.prenom | uppercase}} {{envoie.recepteur.nom | uppercase}}</h2>
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
