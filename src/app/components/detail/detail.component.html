@@ -1,86 +1,82 @@
 <fieldset>
     <legend>Envoi</legend>
-    <form class="example-form" #monForm=ngForm (ngSubmit)="updateOperation()">
+    <form class="example-form" #monForm="ngForm" (ngSubmit)="updateOperation()">
         <div class="flex-container">
             <div>
                 <fieldset>
-                    <legend>Emeteur</legend>
-                    <h2>{{envoie.emeteur.prenom | uppercase}} {{envoie.emeteur.nom | uppercase}}</h2>
+                    <legend>Emetteur</legend>
+                    <mat-icon class="editbtn" (click)="activationEmeteur()" matSuffix>mode_edit</mat-icon>
+                    <h2>{{envoie.emeteur.prenom | uppercase}} {{envoie.emeteur.nom | uppercase}}</h2> 
                     <table class="example-full-width" cellspacing="0"><tr>
-                    <td><mat-form-field class="example-full-width">
-                        <mat-label>First name emeteur</mat-label>
-                        <input [(ngModel)]="envoie.emeteur.prenom" name="prenom" matInput disabled required #prenom>
-                        <mat-icon matSuffix>mode_edit</mat-icon> 
-                    </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                        <mat-label>Last Name emeteur</mat-label>
-                        <input [(ngModel)]="envoie.emeteur.nom" name="nom" matInput disabled required #nom>
-                        <mat-icon matSuffix>mode_edit</mat-icon>
-                        </mat-form-field>
-                    </td>
-                    </tr></table>
-                    <table class="example-full-width" cellspacing="0">
-                        <tr>
-                            <td>
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Telephone</mat-label>
-                                    <span matPrefix>+221 &nbsp;</span>
-                                    <input [(ngModel)]="envoie.emeteur.telephone" name="telephone" type="tel" matInput #telephone maxlength="14" required disabled>
-                                    <mat-icon matSuffix>mode_edit</mat-icon>
-                                </mat-form-field>
-                            </td>
-                            <td>
-                                <mat-form-field class="example-full-width">
-                                <mat-label>Num Carte Identite</mat-label>
-                                <input [(ngModel)]="envoie.emeteur.nci" name="nci" matInput  maxlength="13" #nci disabled required>
-                                <mat-icon matSuffix>mode_edit</mat-icon>
-                                </mat-form-field>
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="example-full-width" cellspacing="0"><tr>
-                    <td><mat-form-field class="example-full-width">
-                        <mat-label>Montant</mat-label>
-                        <input matInput [(ngModel)]="envoie.montant" name="montant" disabled #montant required>
-                        <mat-icon matSuffix>mode_edit</mat-icon>
-                    </mat-form-field></td>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Choose a date</mat-label>
-                            <input matInput [(ngModel)]="envoie.date" name="date"  maxlength="10" #date disabled required>
-                            <mat-datepicker-toggle></mat-datepicker-toggle>
-                            <mat-icon matSuffix>mode_edit</mat-icon>
-                            <!-- <mat-datepicker #picker></mat-datepicker> -->
+                        <td><mat-form-field class="example-full-width">
+                            <mat-label>First name emeteur</mat-label>
+                            <input [(ngModel)]="envoie.emeteur.prenom" name="prenom" [disabled]="true ? !isEmeteurActivate : false" matInput required #prenom>
                         </mat-form-field>
                         </td>
-                    </tr>
-                    </table>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                            <mat-label>Last Name emeteur</mat-label>
+                            <input [(ngModel)]="envoie.emeteur.nom" name="nom" matInput [disabled]="true ? !isEmeteurActivate : false" required #nom>
+                            </mat-form-field>
+                        </td>
+                        </tr></table>
+                        <table class="example-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Telephone</mat-label>
+                                        <span matPrefix>+221 &nbsp;</span>
+                                        <input [(ngModel)]="envoie.emeteur.telephone" name="telephone" type="tel" matInput #telephone maxlength="14" [disabled]="true ? !isEmeteurActivate : false" required>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field class="example-full-width">
+                                    <mat-label>Num Carte Identite</mat-label>
+                                    <input [(ngModel)]="envoie.emeteur.nci" name="nci" matInput  maxlength="13" #nci [disabled]="true ? !isEmeteurActivate : false" required>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="example-full-width" cellspacing="0"><tr>
+                        <td><mat-form-field class="example-full-width">
+                            <mat-label>Montant</mat-label>
+                            <input matInput [(ngModel)]="envoie.montant" name="montant" #montant [disabled]="true ? !isEmeteurActivate : false" required>
+                        </mat-form-field></td>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [(ngModel)]="envoie.date" name="date"  maxlength="10" #date [disabled]="true ? !isEmeteurActivate : false" required>
+                                <mat-datepicker-toggle></mat-datepicker-toggle>
+                                <!-- <mat-datepicker #picker></mat-datepicker> -->
+                            </mat-form-field>
+                            </td>
+                        </tr>
+                        </table>
                 </fieldset>
             </div>
             <div>
                 <fieldset>
                     <legend>Recepteur</legend>
+                    <mat-icon matSuffix class="editbtn" (click)="activationRecepteur()">mode_edit</mat-icon>
                     <h2>{{envoie.recepteur.prenom | uppercase}} {{envoie.recepteur.nom | uppercase}}</h2>
                     <table class="example-full-width" cellspacing="0"><tr>
                     <td><mat-form-field class="example-full-width">
                         <mat-label>First name Recepteur</mat-label>
-                        <input matInput [(ngModel)]="envoie.recepteur.prenom" name="prenom" #prenomR disabled required>
-                        <mat-icon matSuffix>mode_edit</mat-icon>
+                        <input matInput [(ngModel)]="envoie.recepteur.prenom" name="prenomR" #prenomR [disabled]="true ? !isRecepteurActivate : false" required>
                     </mat-form-field></td>
-                    <td><mat-form-field class="example-full-width">
+                    <td>
+                        <mat-form-field class="example-full-width">
                         <mat-label>Last Name Recepteur</mat-label>
-                        <input matInput [(ngModel)]="envoie.recepteur.nom" name="nomR" #nomR disabled required>
-                        <mat-icon matSuffix>mode_edit</mat-icon>
-                    </mat-form-field></td>
-                    </tr></table>
+                        <input matInput [(ngModel)]="envoie.recepteur.nom" name="nomR" #nomR [disabled]="true ? !isRecepteurActivate : false" required>
+                        </mat-form-field>
+                    </td>
+                    </tr>
+                </table>
                     <p>
                     <mat-form-field class="example-full-width">
                         <mat-label>Telephone</mat-label>
                         <span matPrefix>+221 &nbsp;</span>
-                        <input type="tel" matInput [(ngModel)]="envoie.recepteur.tel" name="tel" class="txt" disabled  maxlength="14" required #tel>
-                        <mat-icon matSuffix>mode_edit</mat-icon>
+                        <input type="tel" matInput [(ngModel)]="envoie.recepteur.tel" name="tel" class="txt"  maxlength="14" [disabled]="true ? !isRecepteurActivate : false" required #tel>
                     </mat-form-field>
                     </p>
                     <table class="example-full-width" cellspacing="0"><tr>
@@ -90,7 +86,7 @@
             </div>
         </div>
         <div class="example-button-row">
-            <button  mat-stroke-button class="btn" color = "warn" disabled>Valider</button>
+            <button  mat-stroke-button class="btn" color = "warn" [disabled]=!monForm.valid >Valider</button>
             <button  mat-stroke-button class="btn" routerLink="/operations"  color = "accent">Retour</button>
         </div>
     </form>

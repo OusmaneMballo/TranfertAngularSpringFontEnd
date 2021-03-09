@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
 })
 export class EnvoieService {
 
-  private envoieUrl='http://localhost:8080/envoie';
+  private envoieUrl='http://localhost:8090/envoie';
+ // private envoie_update: Envoie;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -50,6 +51,24 @@ getEnvoieById(id: number):Observable<Envoie>{
     map(Response=>Response)
   );
 }
+/* Methode de mis a jour */
+updateEnvoie(envoie: Envoie): Observable<Envoie>{
+  let envoie_update=null;
+  let url = `${this.envoieUrl+'/update'}/${envoie.id}`;
+  console.log(envoie);
+  return this.httpClient.put<Envoie>(url, envoie);
+  // return this.httpClient.put<Envoie>(this.envoieUrl+'/update', envoie).pipe(
+  //   map(envoie_update=Response=>Response)
+  //   //heroes=>this.heroes=heroes
+  // );
+}
+
+// updateHero(hero: Hero): Observable<any> {
+//   return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+//     tap(_ => this.log(`updated hero id=${hero.id}`)),
+//     catchError(this.handleError<any>('updateHero'))
+//   );
+// }
 
 
 }

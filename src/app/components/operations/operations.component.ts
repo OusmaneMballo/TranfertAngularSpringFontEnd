@@ -3,6 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {Emeteur} from '../../modeles/emeteur';
 import {Envoie} from '../../modeles/envoie';
+import { SwUpdate } from "@angular/service-worker";
 import { Router, ActivatedRoute, NavigationExtras, ParamMap } from '@angular/router';
 //import {EmeteurServiceService} from '../../services/emeteur-service.service';
 import { RecepteurService } from 'src/app/services/recepteur.service';
@@ -17,13 +18,21 @@ export class OperationsComponent implements OnInit {
   
   emetteur=new Emeteur();
   router: Router;
-  
   listOperation: Envoie[]=[];
   dataSource: MatTableDataSource<Envoie>;
+  update: Boolean = false;
+
+
   constructor(
     private envoieService: EnvoieService,
     private route: ActivatedRoute,
-    private recepteur: RecepteurService) { }
+    private recepteur: RecepteurService, update: SwUpdate) {
+
+      //Evement qui met a jour le cache apres chaque demarrage de lapplication
+      update.available.subscribe(event=>{
+        update.activateUpdate().then(()=>document.location.reload());
+      })
+     }
   
   ngOnInit(): void {
     this.envoieService.getEnvoies().subscribe((data)=>{

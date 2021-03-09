@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 import {Emeteur} from '../../modeles/emeteur';
 import {Recepteur} from '../../modeles/recepteur';
 import {Envoie} from '../../modeles/envoie';
@@ -10,13 +11,20 @@ import {EnvoieService} from '../../services/envoie.service';
   styleUrls: ['./envoi.component.css']
 })
 export class EnvoiComponent implements OnInit {
+
   emeteur=new Emeteur();
   recepteur=new Recepteur();
   envoie=new Envoie();
   listEnvoie:Envoie[];
+  update: Boolean = false;
   @ViewChild('monForm') form: any;
 
-  constructor(private Envoieservice: EnvoieService) { }
+  constructor(private Envoieservice: EnvoieService, update: SwUpdate) {
+    //Evement qui met a jour le cache apres chaque demarrage de lapplication
+    update.available.subscribe(event=>{
+      update.activateUpdate().then(()=>document.location.reload());
+    })
+  }
 
   ngOnInit(): void {
     this.Envoieservice.getEnvoies().subscribe(data=>this.listEnvoie=data);
@@ -32,16 +40,6 @@ export class EnvoiComponent implements OnInit {
     this.envoie.montant=0;
   }
 
-  // saveEmeteur(){
-  //   console.log(this.EmeteurService.ajoutEmeteur(this.emeteur));
-  // }
-
-  // saveRecepteur(){
-  //   console.log(this.RecepteurService.ajoutEmeteur(this.recepteur));
-  // }
-  
-  /*Cette methode permet d'effectuer une operation en affectant l'objet
-    emetteur et l'objet recepteur a l'objet envoie */
   addOperation(){
     // this.saveEmeteur();
     // this.saveRecepteur();
@@ -55,7 +53,6 @@ export class EnvoiComponent implements OnInit {
     (error)=>{
       console.log(error);
     });
-    //console.log(this.Envoieservice.addOperation(this.envoie));
 
   }
 

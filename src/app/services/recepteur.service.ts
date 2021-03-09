@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class RecepteurService {
 
-  private recepteurUrl='http://localhost:8080/recepteur';
+  private recepteurUrl='http://localhost:8090/recepteur';
   constructor(private httpClient: HttpClient) { }
 
     /** GET All Recepteur from the server */
