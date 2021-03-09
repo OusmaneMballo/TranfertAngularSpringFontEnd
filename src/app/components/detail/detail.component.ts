@@ -50,10 +50,15 @@ export class DetailComponent implements OnInit {
     
       let ok=this.envoieservice.updateEnvoie(this.envoie);
       if(ok){
-        this.isEmeteurActivate=false;
-        this.isRecepteurActivate=false;
-        this.isValidate=false;
-        console.log('Okey');
+        ok.subscribe(data=>{
+          console.log("Okey!");
+          this.isEmeteurActivate=false;
+          this.isRecepteurActivate=false;
+          this.isValidate=false;
+        },
+        err=>{
+          console.log("Non okey!!");
+        })
       }
   }
 

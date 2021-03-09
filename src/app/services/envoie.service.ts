@@ -52,7 +52,7 @@ getEnvoieById(id: number):Observable<Envoie>{
   );
 }
 /* Methode de mis a jour */
-updateEnvoie(envoie: Envoie): Observable<Envoie>{
+updateEnvoie(envoie: Envoie): Observable<any>{
   let envoie_update=null;
   let url = `${this.envoieUrl+'/update'}/${envoie.id}`;
   console.log(envoie);

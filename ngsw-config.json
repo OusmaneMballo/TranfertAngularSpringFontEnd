@@ -29,7 +29,7 @@
   ],
   "dataGroups": [
     {
-      "name": "jokes-api",
+      "name": "money_express",
       "urls": ["http://localhost:8090/envoie/all"],
       "cacheConfig": {
         "strategy": "freshness",
